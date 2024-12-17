@@ -21,12 +21,15 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        checkboxTheme: CheckboxThemeData(
+            checkColor: WidgetStatePropertyAll(appcolors.appColor),),
         scaffoldBackgroundColor: appcolors.blackColor,
         primaryColor: appcolors.blackColor,
         appBarTheme: AppBarTheme(backgroundColor: appcolors.blackColor),
         fontFamily: "Poppins",
         colorScheme: ColorScheme.fromSeed(seedColor: appcolors.appColor),
-        useMaterial3: true,
+
+        useMaterial3: false,
         splashFactory: NoSplash.splashFactory, // Removes splash effect
       ),
       home: const SplashScreen(),

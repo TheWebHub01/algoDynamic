@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-Container customDropDown(String title) {
+Container customDropDown(String title, void Function()? onPressed) {
   return Container(
-    padding: EdgeInsets.symmetric(horizontal: 15, vertical: 14),
+    padding: EdgeInsets.only(left: 10),
     decoration: BoxDecoration(
         color: Color(0xFF0E0E0E),
         borderRadius: BorderRadius.circular(8),
@@ -15,7 +15,9 @@ Container customDropDown(String title) {
           style: TextStyle(fontSize: 12, color: Color(0xFFABABAB)),
         ),
         Spacer(),
-        SvgPicture.asset("assets/svg/drop_down.svg")
+        TextButton(
+            onPressed: onPressed,
+            child: SvgPicture.asset("assets/svg/drop_down.svg"))
       ],
     ),
   );

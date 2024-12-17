@@ -1,4 +1,6 @@
 import 'package:algodynamic/constants/custom_dropdown/custom_drop_down.dart';
+import 'package:algodynamic/screens/home/condition_edit_screen.dart';
+import 'package:algodynamic/screens/home/scan_on_screen.dart';
 import 'package:algodynamic/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -93,7 +95,15 @@ class _HomeDetailScreenState extends State<HomeDetailScreen> {
                     const SizedBox(
                       height: 10,
                     ),
-                    customDropDown("Nifty 100"),
+                    customDropDown(
+                      "Nifty 100",
+                      () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const ScanOnScreen()));
+                      },
+                    ),
                     const SizedBox(
                       height: 20,
                     ),
@@ -111,7 +121,10 @@ class _HomeDetailScreenState extends State<HomeDetailScreen> {
                               const SizedBox(
                                 height: 10,
                               ),
-                              customDropDown("Nifty 100"),
+                              customDropDown(
+                                "Nifty 100",
+                                () {},
+                              ),
                             ],
                           ),
                         ),
@@ -130,7 +143,10 @@ class _HomeDetailScreenState extends State<HomeDetailScreen> {
                               const SizedBox(
                                 height: 10,
                               ),
-                              customDropDown("1 Minute"),
+                              customDropDown(
+                                "1 Minute",
+                                () {},
+                              ),
                             ],
                           ),
                         )
@@ -147,23 +163,84 @@ class _HomeDetailScreenState extends State<HomeDetailScreen> {
                               color: appcolors.whiteColor, fontSize: 15),
                         ),
                         const Spacer(),
-                        SvgPicture.asset("assets/svg/edit.svg")
+                        GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => ConditionEditScreen(
+                                            title: widget.title,
+                                          )));
+                            },
+                            child: SvgPicture.asset("assets/svg/edit.svg"))
                       ],
                     ),
                     const SizedBox(
                       height: 10,
                     ),
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 10, vertical: 15),
-                      decoration: BoxDecoration(
-                          color: const Color(0xFF0E0E0E),
-                          borderRadius: BorderRadius.circular(11),
-                          border: Border.all(color: const Color(0xFF292929))),
-                      child: const Text(
-                        "Period Max(40, High(-1) ) lower than Period max(40, High(-41) ) *1.02 and Period max(40, High(-1) ) higher tha...Read More",
-                        style:
-                            TextStyle(color: Color(0xFFABABAB), fontSize: 12),
+                    GestureDetector(
+                      onTap: () {
+                        showModalBottomSheet(
+                          context: context,
+                          backgroundColor: Colors
+                              .transparent, // Transparent to customize everything
+                          builder: (context) {
+                            return Container(
+                              decoration: const BoxDecoration(
+                                  color: Color(0xFF080808), // Background color
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(40),
+                                    topRight: Radius.circular(40),
+                                  ),
+                                  border: Border(
+                                      top: BorderSide(
+                                    color:
+                                        Color(0xFF292929), // Background color
+                                  ))),
+                              child: Padding(
+                                padding: const EdgeInsets.all(16.0),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const SizedBox(height: 5),
+                                    Center(
+                                      child: Text(
+                                        "Conditions",
+                                        style: TextStyle(
+                                          fontSize: 20,
+                                          color: appcolors.whiteColor,
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(height: 15),
+                                    Text(
+                                      "Period max(40, High(-1) ) lower than Period max (40, High(-41) ) * 1.02 and Period max(40, High(-1) ) higher than Period max(40, High(-41) ) * 0.98 and Period max (40, High(-41) ) higher than Period max (100,High(-81) )",
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        color: appcolors.whiteColor
+                                            .withOpacity(0.6),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            );
+                          },
+                        );
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 10, vertical: 15),
+                        decoration: BoxDecoration(
+                            color: const Color(0xFF0E0E0E),
+                            borderRadius: BorderRadius.circular(11),
+                            border: Border.all(color: const Color(0xFF292929))),
+                        child: const Text(
+                          "Period Max(40, High(-1) ) lower than Period max(40, High(-41) ) *1.02 and Period max(40, High(-1) ) higher tha...Read More",
+                          style:
+                              TextStyle(color: Color(0xFFABABAB), fontSize: 12),
+                        ),
                       ),
                     ),
                     const SizedBox(
@@ -286,76 +363,180 @@ class _HomeDetailScreenState extends State<HomeDetailScreen> {
                       height: 10,
                     ),
                     for (int i = 0; i < ltpList.length; i++)
-                      Container(
-                        margin: const EdgeInsets.symmetric(vertical: 7),
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 10, vertical: 12),
-                        decoration: BoxDecoration(
-                            color: const Color(0xFF0C0F0B),
-                            borderRadius: BorderRadius.circular(11),
-                            border: Border.all(color: const Color(0xFF292929))),
-                        child: Row(
-                          children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  children: [
-                                    Text(
-                                      ltpList[i]['name'],
-                                      style: TextStyle(
-                                          color: appcolors.whiteColor),
+                      GestureDetector(
+                        onTap: () {
+                          showModalBottomSheet(
+                            context: context,
+                            backgroundColor: Colors
+                                .transparent, // Transparent to customize everything
+                            builder: (context) {
+                              return Container(
+                                decoration: const BoxDecoration(
+                                    color:
+                                        Color(0xFF080808), // Background color
+                                    borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(40),
+                                      topRight: Radius.circular(40),
                                     ),
-                                    const SizedBox(
-                                      width: 5,
-                                    ),
-                                    const Text(
-                                      'NSE',
-                                      style: TextStyle(
-                                          color: Color(0xFF9D9D9D),
-                                          fontSize: 10),
-                                    ),
-                                  ],
+                                    border: Border(
+                                        top: BorderSide(
+                                      color:
+                                          Color(0xFF292929), // Background color
+                                    ))),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(16.0),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      const SizedBox(height: 5),
+                                      Center(
+                                        child: Row(
+                                          children: [
+                                            Spacer(),
+                                            Spacer(),
+                                            Text(
+                                              ltpList[i]['name'],
+                                              style: TextStyle(
+                                                fontSize: 20,
+                                                color: appcolors.whiteColor,
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              width: 5,
+                                            ),
+                                            const Text(
+                                              "NSE",
+                                              style: TextStyle(
+                                                fontSize: 10,
+                                                color: Color(0xFF9D9D9D),
+                                              ),
+                                            ),
+                                            Spacer(),
+                                            SvgPicture.asset(
+                                                "assets/svg/s.svg"),
+                                            SizedBox(
+                                              width: 10,
+                                            ),
+                                            SvgPicture.asset(
+                                                "assets/svg/b.svg"),
+                                          ],
+                                        ),
+                                      ),
+                                      const SizedBox(height: 20),
+                                      Row(
+                                        children: [
+                                          SvgPicture.asset(
+                                              "assets/svg/technical_graph.svg"),
+                                          SizedBox(
+                                            width: 10,
+                                          ),
+                                          Text(
+                                            "See Technicals",
+                                            style: TextStyle(
+                                                fontSize: 18,
+                                                color: appcolors.whiteColor),
+                                          )
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        height: 10,
+                                      ),
+                                      Row(
+                                        children: [
+                                          SvgPicture.asset(
+                                              "assets/svg/chart_graph.svg"),
+                                          SizedBox(
+                                            width: 10,
+                                          ),
+                                          Text(
+                                            "See Chart",
+                                            style: TextStyle(
+                                                fontSize: 18,
+                                                color: appcolors.whiteColor),
+                                          )
+                                        ],
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                                const SizedBox(
-                                  height: 7,
-                                ),
-                                Row(
-                                  children: [
-                                    const Text(
-                                      "LTP :",
-                                      style: TextStyle(
-                                          fontSize: 12,
-                                          color: Color(0xFF9D9D9D)),
-                                    ),
-                                    const SizedBox(
-                                      width: 5,
-                                    ),
-                                    SvgPicture.asset("assets/svg/lock.svg")
-                                  ],
-                                )
-                              ],
-                            ),
-                            const Spacer(),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                const Text(
-                                  "volume",
-                                  style: TextStyle(
-                                      fontSize: 10, color: Color(0xFF9D9D9D)),
-                                ),
-                                const SizedBox(
-                                  height: 7,
-                                ),
-                                Text(
-                                  ltpList[i]['price'],
-                                  style: const TextStyle(
-                                      fontSize: 15, color: Colors.white),
-                                )
-                              ],
-                            )
-                          ],
+                              );
+                            },
+                          );
+                        },
+                        child: Container(
+                          margin: const EdgeInsets.symmetric(vertical: 7),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 10, vertical: 12),
+                          decoration: BoxDecoration(
+                              color: const Color(0xFF0C0F0B),
+                              borderRadius: BorderRadius.circular(11),
+                              border:
+                                  Border.all(color: const Color(0xFF292929))),
+                          child: Row(
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Text(
+                                        ltpList[i]['name'],
+                                        style: TextStyle(
+                                            color: appcolors.whiteColor),
+                                      ),
+                                      const SizedBox(
+                                        width: 5,
+                                      ),
+                                      const Text(
+                                        'NSE',
+                                        style: TextStyle(
+                                            color: Color(0xFF9D9D9D),
+                                            fontSize: 10),
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox(
+                                    height: 7,
+                                  ),
+                                  Row(
+                                    children: [
+                                      const Text(
+                                        "LTP :",
+                                        style: TextStyle(
+                                            fontSize: 12,
+                                            color: Color(0xFF9D9D9D)),
+                                      ),
+                                      const SizedBox(
+                                        width: 5,
+                                      ),
+                                      SvgPicture.asset("assets/svg/lock.svg")
+                                    ],
+                                  )
+                                ],
+                              ),
+                              const Spacer(),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  const Text(
+                                    "volume",
+                                    style: TextStyle(
+                                        fontSize: 10, color: Color(0xFF9D9D9D)),
+                                  ),
+                                  const SizedBox(
+                                    height: 7,
+                                  ),
+                                  Text(
+                                    ltpList[i]['price'],
+                                    style: const TextStyle(
+                                        fontSize: 15, color: Colors.white),
+                                  )
+                                ],
+                              )
+                            ],
+                          ),
                         ),
                       ),
                     const SizedBox(
