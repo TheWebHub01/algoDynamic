@@ -1,4 +1,5 @@
 import 'package:algodynamic/screens/home/home_detail_screen.dart';
+import 'package:algodynamic/screens/strategies/strategies_details_screen.dart';
 import 'package:algodynamic/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -125,7 +126,7 @@ class _StrategiesScreenState extends State<StrategiesScreen> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => HomeDetailScreen(
+                                builder: (context) => StrategiesDetailsScreen(
                                       title: scannersList[i]['data'][j]
                                           ['title'],
                                     )));

@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class BullishSwingsScreen extends StatefulWidget {
-  const BullishSwingsScreen({super.key});
+  final bool positive;
+  const BullishSwingsScreen({super.key, this.positive = true});
 
   @override
   State<BullishSwingsScreen> createState() => _BullishSwingsScreenState();
@@ -146,129 +147,134 @@ class _BullishSwingsScreenState extends State<BullishSwingsScreen> {
                 ],
               ),
             ),
-            Container(
-              margin: const EdgeInsets.symmetric(vertical: 10),
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  border: Border.all(color: const Color(0xFF292929))),
-              child: Center(
-                child: AspectRatio(
-                  aspectRatio: 1.8,
-                  child: LineChart(
-                    LineChartData(
-                      gridData: FlGridData(
-                        show: true,
-                        drawVerticalLine: false,
-                        getDrawingHorizontalLine: (value) => FlLine(
-                          color: appcolors.greyColor, // Grey grid lines
-                          strokeWidth: 1,
+            widget.positive
+                ? SizedBox()
+                : Container(
+                    margin: const EdgeInsets.symmetric(vertical: 10),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 12),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        border: Border.all(color: const Color(0xFF292929))),
+                    child: Center(
+                      child: AspectRatio(
+                        aspectRatio: 1.8,
+                        child: LineChart(
+                          LineChartData(
+                            gridData: FlGridData(
+                              show: true,
+                              drawVerticalLine: false,
+                              getDrawingHorizontalLine: (value) => FlLine(
+                                color: appcolors.greyColor, // Grey grid lines
+                                strokeWidth: 1,
+                              ),
+                            ),
+                            titlesData: FlTitlesData(
+                              show: true,
+                              bottomTitles: AxisTitles(
+                                sideTitles: SideTitles(
+                                  showTitles: true,
+                                  reservedSize: 25,
+                                  getTitlesWidget: (value, _) {
+                                    switch (value.toInt()) {
+                                      case 0:
+                                        return Text('2023',
+                                            style: TextStyle(
+                                                color: appcolors.whiteColor,
+                                                fontSize: 12));
+                                      case 2:
+                                        return Text('Mar',
+                                            style: TextStyle(
+                                                color: appcolors.whiteColor,
+                                                fontSize: 12));
+                                      case 4:
+                                        return Text('May',
+                                            style: TextStyle(
+                                                color: appcolors.whiteColor,
+                                                fontSize: 12));
+                                      case 6:
+                                        return Text('Jul',
+                                            style: TextStyle(
+                                                color: appcolors.whiteColor,
+                                                fontSize: 12));
+                                      case 8:
+                                        return Text('22',
+                                            style: TextStyle(
+                                                color: appcolors.whiteColor,
+                                                fontSize: 12));
+                                      default:
+                                        return const SizedBox.shrink();
+                                    }
+                                  },
+                                  interval: 2,
+                                ),
+                              ),
+                              leftTitles: const AxisTitles(
+                                  sideTitles: SideTitles(showTitles: false)),
+                              topTitles: const AxisTitles(
+                                  sideTitles: SideTitles(showTitles: false)),
+                              rightTitles: const AxisTitles(
+                                  sideTitles: SideTitles(showTitles: false)),
+                            ),
+                            borderData: FlBorderData(
+                              show: true,
+                              border: Border(
+                                left: BorderSide(
+                                  color: appcolors.greyColor, // Grey Y-axis
+                                  width: 1,
+                                ),
+                                bottom: BorderSide(
+                                  color: appcolors.greyColor, // Grey X-axis
+                                  width: 1,
+                                ),
+                                right: const BorderSide(
+                                  color: Colors.transparent, // No right border
+                                ),
+                                top: const BorderSide(
+                                  color: Colors.transparent, // No top border
+                                ),
+                              ),
+                            ),
+                            minX: 0,
+                            maxX: 8,
+                            minY: 0,
+                            maxY: 4,
+                            lineBarsData: [
+                              LineChartBarData(
+                                isCurved: true,
+                                color: appcolors.appColor,
+                                barWidth: 3,
+                                isStrokeCapRound: true,
+                                belowBarData: BarAreaData(
+                                  show: true,
+                                  color: appcolors.appColor.withOpacity(0.30),
+                                ),
+                                dotData: const FlDotData(show: false),
+                                spots: const [
+                                  FlSpot(0, 2),
+                                  FlSpot(2, 1.5),
+                                  FlSpot(4, 2.8),
+                                  FlSpot(6, 2),
+                                  FlSpot(8, 3.6),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                      titlesData: FlTitlesData(
-                        show: true,
-                        bottomTitles: AxisTitles(
-                          sideTitles: SideTitles(
-                            showTitles: true,
-                            reservedSize: 25,
-                            getTitlesWidget: (value, _) {
-                              switch (value.toInt()) {
-                                case 0:
-                                  return Text('2023',
-                                      style: TextStyle(
-                                          color: appcolors.whiteColor,
-                                          fontSize: 12));
-                                case 2:
-                                  return Text('Mar',
-                                      style: TextStyle(
-                                          color: appcolors.whiteColor,
-                                          fontSize: 12));
-                                case 4:
-                                  return Text('May',
-                                      style: TextStyle(
-                                          color: appcolors.whiteColor,
-                                          fontSize: 12));
-                                case 6:
-                                  return Text('Jul',
-                                      style: TextStyle(
-                                          color: appcolors.whiteColor,
-                                          fontSize: 12));
-                                case 8:
-                                  return Text('22',
-                                      style: TextStyle(
-                                          color: appcolors.whiteColor,
-                                          fontSize: 12));
-                                default:
-                                  return const SizedBox.shrink();
-                              }
-                            },
-                            interval: 2,
-                          ),
-                        ),
-                        leftTitles: const AxisTitles(
-                            sideTitles: SideTitles(showTitles: false)),
-                        topTitles: const AxisTitles(
-                            sideTitles: SideTitles(showTitles: false)),
-                        rightTitles: const AxisTitles(
-                            sideTitles: SideTitles(showTitles: false)),
-                      ),
-                      borderData: FlBorderData(
-                        show: true,
-                        border: Border(
-                          left: BorderSide(
-                            color: appcolors.greyColor, // Grey Y-axis
-                            width: 1,
-                          ),
-                          bottom: BorderSide(
-                            color: appcolors.greyColor, // Grey X-axis
-                            width: 1,
-                          ),
-                          right: const BorderSide(
-                            color: Colors.transparent, // No right border
-                          ),
-                          top: const BorderSide(
-                            color: Colors.transparent, // No top border
-                          ),
-                        ),
-                      ),
-                      minX: 0,
-                      maxX: 8,
-                      minY: 0,
-                      maxY: 4,
-                      lineBarsData: [
-                        LineChartBarData(
-                          isCurved: true,
-                          color: appcolors.appColor,
-                          barWidth: 3,
-                          isStrokeCapRound: true,
-                          belowBarData: BarAreaData(
-                            show: true,
-                            color: appcolors.appColor.withOpacity(0.30),
-                          ),
-                          dotData: const FlDotData(show: false),
-                          spots: const [
-                            FlSpot(0, 2),
-                            FlSpot(2, 1.5),
-                            FlSpot(4, 2.8),
-                            FlSpot(6, 2),
-                            FlSpot(8, 3.6),
-                          ],
-                        ),
-                      ],
                     ),
                   ),
-                ),
-              ),
-            ),
             Row(
               children: [
                 Text(
-                  "Transaction Details",
+                  widget.positive
+                      ? "Transaction Charges"
+                      : "Transaction Details",
                   style: TextStyle(color: appcolors.whiteColor, fontSize: 14),
                 ),
                 const Spacer(),
                 Text(
-                  "Brokers",
+                  widget.positive ? "" : "Brokers",
                   style: TextStyle(color: appcolors.appColor, fontSize: 14),
                 ),
                 Switch(
