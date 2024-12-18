@@ -22,15 +22,15 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         checkboxTheme: CheckboxThemeData(
-            checkColor: WidgetStatePropertyAll(appcolors.appColor),),
+          checkColor: WidgetStatePropertyAll(appcolors.appColor),
+        ),
         scaffoldBackgroundColor: appcolors.blackColor,
         primaryColor: appcolors.blackColor,
         appBarTheme: AppBarTheme(backgroundColor: appcolors.blackColor),
         fontFamily: "Poppins",
         colorScheme: ColorScheme.fromSeed(seedColor: appcolors.appColor),
-
         useMaterial3: false,
-        splashFactory: NoSplash.splashFactory, // Removes splash effect
+        splashFactory: NoSplash.splashFactory,
       ),
       home: const SplashScreen(),
     );

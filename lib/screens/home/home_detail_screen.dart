@@ -1,6 +1,7 @@
 import 'package:algodynamic/constants/custom_dropdown/custom_drop_down.dart';
 import 'package:algodynamic/screens/home/condition_edit_screen.dart';
 import 'package:algodynamic/screens/home/scan_on_screen.dart';
+import 'package:algodynamic/screens/home/technical_screen.dart';
 import 'package:algodynamic/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -394,8 +395,8 @@ class _HomeDetailScreenState extends State<HomeDetailScreen> {
                                       Center(
                                         child: Row(
                                           children: [
-                                            Spacer(),
-                                            Spacer(),
+                                            const Spacer(),
+                                            const Spacer(),
                                             Text(
                                               ltpList[i]['name'],
                                               style: TextStyle(
@@ -403,7 +404,7 @@ class _HomeDetailScreenState extends State<HomeDetailScreen> {
                                                 color: appcolors.whiteColor,
                                               ),
                                             ),
-                                            SizedBox(
+                                            const SizedBox(
                                               width: 5,
                                             ),
                                             const Text(
@@ -413,10 +414,10 @@ class _HomeDetailScreenState extends State<HomeDetailScreen> {
                                                 color: Color(0xFF9D9D9D),
                                               ),
                                             ),
-                                            Spacer(),
+                                            const Spacer(),
                                             SvgPicture.asset(
                                                 "assets/svg/s.svg"),
-                                            SizedBox(
+                                            const SizedBox(
                                               width: 10,
                                             ),
                                             SvgPicture.asset(
@@ -425,29 +426,41 @@ class _HomeDetailScreenState extends State<HomeDetailScreen> {
                                         ),
                                       ),
                                       const SizedBox(height: 20),
-                                      Row(
-                                        children: [
-                                          SvgPicture.asset(
-                                              "assets/svg/technical_graph.svg"),
-                                          SizedBox(
-                                            width: 10,
-                                          ),
-                                          Text(
-                                            "See Technicals",
-                                            style: TextStyle(
-                                                fontSize: 18,
-                                                color: appcolors.whiteColor),
-                                          )
-                                        ],
+                                      GestureDetector(
+                                        onTap: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      TechnicalScreen(
+                                                        title: ltpList[i]
+                                                            ['name'],
+                                                      )));
+                                        },
+                                        child: Row(
+                                          children: [
+                                            SvgPicture.asset(
+                                                "assets/svg/technical_graph.svg"),
+                                            const SizedBox(
+                                              width: 10,
+                                            ),
+                                            Text(
+                                              "See Technicals",
+                                              style: TextStyle(
+                                                  fontSize: 18,
+                                                  color: appcolors.whiteColor),
+                                            )
+                                          ],
+                                        ),
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         height: 10,
                                       ),
                                       Row(
                                         children: [
                                           SvgPicture.asset(
                                               "assets/svg/chart_graph.svg"),
-                                          SizedBox(
+                                          const SizedBox(
                                             width: 10,
                                           ),
                                           Text(
