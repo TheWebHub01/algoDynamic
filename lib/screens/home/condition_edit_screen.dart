@@ -1,3 +1,4 @@
+import 'package:algodynamic/screens/Condition/condition_details_screen.dart';
 import 'package:algodynamic/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -228,25 +229,37 @@ class _ConditionEditScreenState extends State<ConditionEditScreen> {
                     const SizedBox(
                       height: 10,
                     ),
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 15, vertical: 10),
-                      decoration: BoxDecoration(
-                          color: const Color(0xFF0E0E0E),
-                          borderRadius: BorderRadius.circular(12),
-                          border: Border.all(color: const Color(0xFF292929))),
-                      child: Row(
-                        children: [
-                          SvgPicture.asset("assets/svg/plus.svg"),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            "Add",
-                            style: TextStyle(
-                                fontSize: 16, color: appcolors.redColor),
-                          )
-                        ],
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  const ConditionDetailsScreen(
+                                title: "Condition",
+                              ),
+                            ));
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 15, vertical: 10),
+                        decoration: BoxDecoration(
+                            color: const Color(0xFF0E0E0E),
+                            borderRadius: BorderRadius.circular(12),
+                            border: Border.all(color: const Color(0xFF292929))),
+                        child: Row(
+                          children: [
+                            SvgPicture.asset("assets/svg/plus.svg"),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              "Add",
+                              style: TextStyle(
+                                  fontSize: 16, color: appcolors.redColor),
+                            )
+                          ],
+                        ),
                       ),
                     ),
                     const SizedBox(
