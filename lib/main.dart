@@ -21,6 +21,9 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        // radioTheme: RadioThemeData(
+        //    : WidgetStatePropertyAll(appcolors.appColor),
+        // ),
         checkboxTheme: CheckboxThemeData(
           checkColor: WidgetStatePropertyAll(appcolors.appColor),
         ),

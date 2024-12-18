@@ -30,7 +30,7 @@ class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen> {
     const HomeScreen(),
     const StrategiesScreen(),
     const ScannerScreen(),
-    const BullishSwingsScreen(),
+    const ScannerScreen(),
     const ProfileScreen(),
   ];
   List<bool> isTappedList = [];
