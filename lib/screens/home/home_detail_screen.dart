@@ -57,6 +57,18 @@ class _HomeDetailScreenState extends State<HomeDetailScreen> {
       'price': '42265',
     },
   ];
+  List<String> chartTypemenuOptions = ['Heikin-Ashi', 'Candlestick'];
+  List<String> timeFramemenuOptions = [
+    '1 Minute',
+    '3 Minutes',
+    '5 Minutes',
+    '10 Minutes',
+    '15 Minutes',
+    '30 Minutes',
+    '1 Hour',
+    '1 Day'
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -123,8 +135,39 @@ class _HomeDetailScreenState extends State<HomeDetailScreen> {
                                 height: 10,
                               ),
                               customDropDown(
-                                "Nifty 100",
-                                () {},
+                                "Candlestick",
+                                () {
+                                  showMenu<String>(
+                                    color: appcolors.blackColor,
+                                    shape: RoundedRectangleBorder(
+                                      side: const BorderSide(
+                                          color: Color(0xFF292929)),
+                                      borderRadius: BorderRadius.circular(12),
+                                    ),
+                                    context: context,
+                                    position: RelativeRect.fromLTRB(
+                                      10, // Left margin to align closer to the left
+                                      260, // Top margin (controls vertical position)
+                                      MediaQuery.of(context).size.width -
+                                          50, // Right alignment pushing menu left
+                                      0, // Bottom
+                                    ),
+                                    items: chartTypemenuOptions
+                                        .map((option) => PopupMenuItem<String>(
+                                              value: option,
+                                              child: Center(
+                                                child: Text(
+                                                  option,
+                                                  style: TextStyle(
+                                                      color:
+                                                          appcolors.whiteColor),
+                                                ),
+                                              ),
+                                            ))
+                                        .toList(), // Convert to a list
+                                    elevation: 8.0,
+                                  );
+                                },
                               ),
                             ],
                           ),
@@ -146,7 +189,42 @@ class _HomeDetailScreenState extends State<HomeDetailScreen> {
                               ),
                               customDropDown(
                                 "1 Minute",
-                                () {},
+                                () {
+                                  final RenderBox overlay = Overlay.of(context)
+                                      .context
+                                      .findRenderObject() as RenderBox;
+                                  final double screenWidth = overlay.size.width;
+                                  showMenu<String>(
+                                    color: appcolors.blackColor,
+                                    shape: RoundedRectangleBorder(
+                                      side: const BorderSide(
+                                          color: Color(0xFF292929)),
+                                      borderRadius: BorderRadius.circular(12),
+                                    ),
+                                    context: context,
+                                    position: RelativeRect.fromLTRB(
+                                      screenWidth -
+                                          150, // Adjust this for the exact horizontal alignment
+                                      260, // Top position
+                                      10, // Right-side margin
+                                      0, // Bottom position
+                                    ),
+                                    items: timeFramemenuOptions
+                                        .map((option) => PopupMenuItem<String>(
+                                              value: option,
+                                              child: Center(
+                                                child: Text(
+                                                  option,
+                                                  style: TextStyle(
+                                                      color:
+                                                          appcolors.whiteColor),
+                                                ),
+                                              ),
+                                            ))
+                                        .toList(), // Convert to a list
+                                    elevation: 8.0,
+                                  );
+                                },
                               ),
                             ],
                           ),
@@ -477,6 +555,7 @@ class _HomeDetailScreenState extends State<HomeDetailScreen> {
                               );
                             },
                           );
+                      
                         },
                         child: Container(
                           margin: const EdgeInsets.symmetric(vertical: 7),
