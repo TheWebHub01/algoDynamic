@@ -1,4 +1,5 @@
 import 'package:algodynamic/screens/splash/splash_screen.dart';
+import 'package:algodynamic/screens/strategies/strategies_buy_sell_screen.dart';
 import 'package:algodynamic/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
