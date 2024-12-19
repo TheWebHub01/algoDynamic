@@ -156,6 +156,8 @@ class _InstrumentAddScreenState extends State<InstrumentAddScreen> {
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                   child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Checkbox(
                         value: instrumentList[i]['isSelected'],
