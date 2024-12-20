@@ -1,4 +1,5 @@
 import 'package:algodynamic/screens/Bullish%20Swings/bullish_swings_screen.dart';
+import 'package:algodynamic/screens/Condition/condition_screen.dart';
 import 'package:algodynamic/screens/home/home_screen.dart';
 import 'package:algodynamic/screens/profile/profile_screen.dart';
 import 'package:algodynamic/screens/scanner/scanner_screen.dart';
@@ -156,6 +157,7 @@ class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen> {
           showModalBottomSheet(
             context: context,
             isScrollControlled: true,
+            shape: CircleBorder(side: BorderSide(color: Colors.transparent)),
             builder: (BuildContext context) {
               double sheetHeight = 100 + scannersList.length * 60;
               return StatefulBuilder(
@@ -169,8 +171,8 @@ class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen> {
                           top:
                               BorderSide(color: appcolors.greyColor, width: 2)),
                       borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(30),
-                        topRight: Radius.circular(30),
+                        topLeft: Radius.circular(35),
+                        topRight: Radius.circular(35),
                       ),
                     ),
                     child: Column(
