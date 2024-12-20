@@ -229,8 +229,12 @@ class _HomeDetailScreenState extends State<HomeDetailScreen> {
                             ],
                           ),
                         )
+                     
                       ],
                     ),
+                  
+                  
+                  
                     const SizedBox(
                       height: 20,
                     ),

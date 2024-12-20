@@ -465,7 +465,7 @@ class _ScannerScreenState extends State<ScannerScreen> {
                                                   ),
                                                   Text(
                                                     sortingList[i]['type'],
-                                                    style: TextStyle(
+                                                    style: const TextStyle(
                                                         color:
                                                             Color(0xFFC0C0C0),
                                                         fontSize: 15),
@@ -473,7 +473,7 @@ class _ScannerScreenState extends State<ScannerScreen> {
                                                 ],
                                               ),
                                             ),
-                                          SizedBox(
+                                          const SizedBox(
                                             height: 10,
                                           )
                                         ],
