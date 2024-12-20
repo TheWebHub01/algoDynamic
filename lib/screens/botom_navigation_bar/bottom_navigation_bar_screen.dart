@@ -157,7 +157,8 @@ class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen> {
           showModalBottomSheet(
             context: context,
             isScrollControlled: true,
-            shape: const CircleBorder(side: const BorderSide(color: Colors.transparent)),
+            shape: const CircleBorder(
+                side: const BorderSide(color: Colors.transparent)),
             builder: (BuildContext context) {
               double sheetHeight = 100 + scannersList.length * 60;
               return StatefulBuilder(

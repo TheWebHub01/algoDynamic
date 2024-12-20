@@ -112,7 +112,7 @@ class _TechnicalScreenState extends State<TechnicalScreen>
                       });
                     }, selectedIndex, _data),
                     marketWidget(),
-                    scannersWidget(),
+                    MyScannersWidget(),
                   ]),
             )
           ],

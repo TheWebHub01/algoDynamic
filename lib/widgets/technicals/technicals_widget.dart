@@ -6,6 +6,7 @@ Column technicalsWidget(List<dynamic> minutes, ValueChanged<int> onIndexChanged,
     int selectedIndex, List<CandleData> _data) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
+    mainAxisAlignment: MainAxisAlignment.start,
     children: [
       const SizedBox(
         height: 15,
@@ -158,7 +159,7 @@ Column technicalsWidget(List<dynamic> minutes, ValueChanged<int> onIndexChanged,
         child: InteractiveChart(
           candles: _data,
         ),
-      )
+      ),
     ],
   );
 }
