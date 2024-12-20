@@ -10,14 +10,20 @@ Container customDropDown(String title, void Function()? onPressed) {
         border: Border.all(color: const Color(0xFf292929))),
     child: Row(
       children: [
-        Text(
-          title,
-          style: TextStyle(fontSize: 12, color: Color(0xFFABABAB)),
+        Expanded(
+          flex: 8,
+          child: Text(
+            title,
+            style: TextStyle(fontSize: 12, color: Color(0xFFABABAB)),
+          ),
         ),
         Spacer(),
-        TextButton(
-            onPressed: onPressed,
-            child: SvgPicture.asset("assets/svg/drop_down.svg"))
+        Expanded(
+          flex: 2,
+          child: TextButton(
+              onPressed: onPressed,
+              child: SvgPicture.asset("assets/svg/drop_down.svg")),
+        )
       ],
     ),
   );

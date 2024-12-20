@@ -1,6 +1,8 @@
 import 'package:algodynamic/screens/Bullish%20Swings/bullish_swings_screen.dart';
 import 'package:algodynamic/screens/Condition/condition_screen.dart';
 import 'package:algodynamic/screens/home/home_screen.dart';
+import 'package:algodynamic/screens/main_screens/notifications/notifications_screen.dart';
+import 'package:algodynamic/screens/main_screens/order_book/order_book_screen.dart';
 import 'package:algodynamic/screens/profile/profile_screen.dart';
 import 'package:algodynamic/screens/scanner/scanner_screen.dart';
 import 'package:algodynamic/screens/strategies/strategies_screen.dart';
@@ -194,12 +196,21 @@ class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen> {
                                   GestureDetector(
                                     onTap: () {
                                       setState(() {
-                                        for (int i = 0;
-                                            i < isTappedList.length;
-                                            i++) {
-                                          isTappedList[i] = false;
+                                        if (scannersList[j]['title'] ==
+                                            "Order Book") {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      OrderBookScreen()));
+                                        } else if (scannersList[j]['title'] ==
+                                            "Notifications") {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      NotificationsScreen()));
                                         }
-                                        isTappedList[j] = true;
                                       });
                                     },
                                     child: Container(

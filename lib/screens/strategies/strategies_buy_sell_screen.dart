@@ -33,6 +33,7 @@ class _StrategiesBuySellScreenState extends State<StrategiesBuySellScreen>
 
   bool _showOptions = false;
   bool _showOptionsEntry = false;
+  bool _showOptionsExit = false;
   TextEditingController qtyLotsController = TextEditingController();
   TextEditingController masAllocationController = TextEditingController();
   TextEditingController maxqualityController = TextEditingController();
@@ -47,13 +48,22 @@ class _StrategiesBuySellScreenState extends State<StrategiesBuySellScreen>
     '1 Day'
   ];
   List<String> chartTypemenuOptions = ['Heikin-Ashi', 'Candlestick'];
+  List<String> dailyStratergyCycleOptions = ['10', '20'];
+  List<String> tpslTypeOptions = [
+    'Percentage (pct)',
+    'Absolute (abs)',
+    'Points (pct)'
+  ];
   List<String> holdingType = ['MIS', 'CNC/NRML'];
   List<String> sizingType = ['Capital Based', 'Risk Based'];
   String selectedTime = "00:00";
   String selectedEndTime = "00:00";
   TimeOfDay? pickedTime;
   TimeOfDay? pickedEndTime;
-
+  DateTime? pickedStartDate;
+  DateTime? pickedStopDate;
+  String selectedStartDate = "Select Start Date";
+  String selectedEndDate = "Select End Date";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -133,8 +143,27 @@ class _StrategiesBuySellScreenState extends State<StrategiesBuySellScreen>
                   pickedTime,
                   pickedEndTime,
                 ),
-                exitWidget(),
-                paramsWidget(),
+                exitWidget(
+                  context,
+                  tpslTypeOptions,
+                  _showOptionsExit,
+                  (value) {
+                    setState(() {
+                      _showOptionsExit = !_showOptionsExit;
+                    });
+                  },
+                ),
+                paramsWidget(
+                    context, dailyStratergyCycleOptions, pickedStartDate,
+                    (value) {
+                  setState(() {
+                    selectedStartDate = value;
+                  });
+                }, (value) {
+                  setState(() {
+                    selectedEndDate = value;
+                  });
+                }, selectedStartDate, selectedEndDate, pickedStopDate)
               ]),
             )
           ],
