@@ -13,29 +13,33 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   List scannersList = [
     {
-      'mainTitle': 'Discover Strategies',
+      'mainTitle': 'Discover Scanners',
       'data': [
         {
-          'title': "Double Top Without Dip",
+          'title': "Range Breakouts",
           'description':
-              "Period max (40, High(-1) ) lower than Period max(4...Read More",
+              "( High(0) - Low(0)) higher than Period max(10, (... Read More",
+          'longDescription':
+              "( High(0) - Low(0)) higher than Period max(10, ( High(-1) - Low(-1) )  )",
           'buttons': [
             'Nifty 500',
             'Daily',
           ],
-          'matches': "77 matches",
+          'matches': "168 matches",
           'imageUrl': ''
         },
         {
-          'title': "Heikin Ashi Bullish Reversal",
+          'title': "Short Term Bearish",
           'description':
-              "This scanner identifies stocks in a 5-minutes time f...Read More",
+              "The scanner identifies for stocks whose ADX indica... Read More",
+          'longDescription':
+              "The scanner identifies for stocks whose ADX indicator is increasing over the past 5 candles while also ensuring that the current ADX(14) value is above 24 and the Supertrend is Red checked on a 5 minutes chart, indicating potential Bearishness.",
           'buttons': [
             'Nifty 500',
             '5 Min',
           ],
           'imageUrl': 'assets/svg/graph.svg',
-          'matches': "49 matches",
+          'matches': "156 matches",
         }
       ]
     },
@@ -46,6 +50,8 @@ class _HomeScreenState extends State<HomeScreen> {
           'title': "Weighted MA Bullish Trend",
           'description':
               "The strategy initiates a buy position when the price breaks...Read More",
+          'longDescription':
+              "The strategy initiates a buy position when the price breaks out of WMA resistance and WMA is also indicating bullishness. The strategy is suitable for Bullish Trending Markets",
           'buttons': [
             'Long',
             '15 Min',
@@ -57,6 +63,8 @@ class _HomeScreenState extends State<HomeScreen> {
           'title': "3 Positive Closes",
           'description':
               "The strategy takes a buy position when the consecutive can...Read More",
+          'longDescription':
+              "The strategy takes a buy position when the consecutive candles close higher than the previous candle's close. Position is taken only when the momentum is positive. The strategy is suitable for bullish trending markets.",
           'buttons': [
             'Long',
             '5 Min',
@@ -148,11 +156,75 @@ class _HomeScreenState extends State<HomeScreen> {
                                 children: [
                                   Expanded(
                                     flex: 5,
-                                    child: Text(
-                                      scannersList[i]['data'][j]['description'],
-                                      style: const TextStyle(
-                                          color: Color(0xFF9D9D9D),
-                                          fontSize: 11),
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        showModalBottomSheet(
+                                          context: context,
+                                          backgroundColor: Colors
+                                              .transparent, // Transparent to customize everything
+                                          builder: (context) {
+                                            return Container(
+                                              decoration: const BoxDecoration(
+                                                  color: Color(
+                                                      0xFF080808), // Background color
+                                                  borderRadius:
+                                                      BorderRadius.only(
+                                                    topLeft:
+                                                        Radius.circular(40),
+                                                    topRight:
+                                                        Radius.circular(40),
+                                                  ),
+                                                  border: Border(
+                                                      top: BorderSide(
+                                                    color: Color(
+                                                        0xFF292929), // Background color
+                                                  ))),
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.all(16.0),
+                                                child: Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.min,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    const SizedBox(height: 5),
+                                                    Center(
+                                                      child: Text(
+                                                        scannersList[i]['data']
+                                                            [j]['title'],
+                                                        style: TextStyle(
+                                                          fontSize: 20,
+                                                          color: appcolors
+                                                              .whiteColor,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    const SizedBox(height: 15),
+                                                    Text(
+                                                      scannersList[i]['data'][j]
+                                                          ['longDescription'],
+                                                      style: TextStyle(
+                                                        fontSize: 14,
+                                                        color: appcolors
+                                                            .whiteColor
+                                                            .withOpacity(0.6),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                        );
+                                      },
+                                      child: Text(
+                                        scannersList[i]['data'][j]
+                                            ['description'],
+                                        style: const TextStyle(
+                                            color: Color(0xFF9D9D9D),
+                                            fontSize: 11),
+                                      ),
                                     ),
                                   ),
                                   Expanded(
@@ -215,8 +287,6 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                   ],
                 ),
-             
-             
               const SizedBox(
                 height: 40,
               )
