@@ -178,7 +178,8 @@ class _OrderBookScreenState extends State<OrderBookScreen>
                         ],
                       ),
                     )
-                  ],
+               
+                 ],
                 )
               ],
             ),

@@ -1,4 +1,7 @@
+import 'package:algodynamic/screens/home/deployed_strategies_screen.dart';
 import 'package:algodynamic/screens/home/home_detail_screen.dart';
+import 'package:algodynamic/screens/home/live_scanners_screen.dart';
+import 'package:algodynamic/screens/home/position_screen.dart';
 import 'package:algodynamic/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -67,7 +70,20 @@ class _HomeScreenState extends State<HomeScreen> {
       ]
     },
   ];
-
+  List homeList = [
+    {
+      'title': 'Positions',
+      'image': 'assets/svg/positions.svg',
+    },
+    {
+      'title': 'Live Scanners',
+      'image': 'assets/svg/live_scanners2.svg',
+    },
+    {
+      'title': 'Deployed Strategies',
+      'image': 'assets/svg/deploy_strategies.svg',
+    },
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -78,12 +94,13 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         actions: [
           TextButton(
-            onPressed: () {},
-            child: const Text(
-              "Login",
-              style: TextStyle(color: Color(0xFFDADADA), fontSize: 13),
-            ),
-          )
+              onPressed: () {},
+              child: SvgPicture.asset("assets/svg/notification1.svg")
+              // Text(
+              //   "Login",
+              //   style: TextStyle(color: Color(0xFFDADADA), fontSize: 13),
+              // ),
+              )
         ],
       ),
       body: SingleChildScrollView(
@@ -92,6 +109,60 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Text(
+                "Hi, Smit Kakadiya",
+                style: TextStyle(fontSize: 17, color: appcolors.whiteColor),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              for (int i = 0; i < homeList.length; i++)
+                GestureDetector(
+                  onTap: () {
+                    if (homeList[i]['title'] == "Positions") {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  const PositionHomeScreen()));
+                    } else if (homeList[i]['title'] == "Live Scanners") {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  const LiveScannersScreen()));
+                    } else if (homeList[i]['title'] == "Deployed Strategies") {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  const DeployedStrategiesScreen()));
+                    }
+                  },
+                  child: Container(
+                    margin: const EdgeInsets.only(bottom: 10),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 10, vertical: 12),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(color: const Color(0xFF292929))),
+                    child: Row(
+                      children: [
+                        SvgPicture.asset(homeList[i]['image']),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          homeList[i]['title'],
+                          style: TextStyle(
+                              fontSize: 15, color: appcolors.whiteColor),
+                        ),
+                        const Spacer(),
+                        SvgPicture.asset("assets/svg/next.svg")
+                      ],
+                    ),
+                  ),
+                ),
               const SizedBox(
                 height: 10,
               ),
@@ -215,8 +286,6 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                   ],
                 ),
-             
-             
               const SizedBox(
                 height: 40,
               )

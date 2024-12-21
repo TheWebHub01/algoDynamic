@@ -125,7 +125,7 @@ Column exitWidget(
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               _showOptions
@@ -135,12 +135,12 @@ Column exitWidget(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
+                              const Text(
                                 "Trailing SL% (Optional)",
                                 style: TextStyle(
                                     color: Color(0xFF9D9D9D), fontSize: 10),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
                               TextField(
@@ -176,12 +176,12 @@ Column exitWidget(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
+                              const Text(
                                 "TPSL Type",
                                 style: TextStyle(
                                     color: Color(0xFF9D9D9D), fontSize: 10),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
                               customDropDown(
@@ -195,7 +195,7 @@ Column exitWidget(
                                       borderRadius: BorderRadius.circular(12),
                                     ),
                                     context: context,
-                                    position: RelativeRect.fromLTRB(
+                                    position: const RelativeRect.fromLTRB(
                                       10, // Left margin to align closer to the left
                                       430, // Top margin (controls vertical position)
                                       0, // Right alignment pushing menu left

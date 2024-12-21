@@ -68,6 +68,24 @@ class _HomeDetailScreenState extends State<HomeDetailScreen> {
     '1 Hour',
     '1 Day'
   ];
+  List menuOptions = [
+    {
+      'name': 'Share',
+      'image': 'assets/svg/take_live.svg',
+    },
+    {
+      'name': 'Take Live',
+      'image': 'assets/svg/share.svg',
+    },
+    {
+      'name': 'Edit Name',
+      'image': 'assets/svg/edit.svg',
+    },
+    {
+      'name': 'Delete',
+      'image': 'assets/svg/delete.svg',
+    },
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -87,7 +105,50 @@ class _HomeDetailScreenState extends State<HomeDetailScreen> {
         ),
         actions: [
           TextButton(
-              onPressed: () {},
+              onPressed: () {
+                final RenderBox overlay =
+                    Overlay.of(context).context.findRenderObject() as RenderBox;
+                final double screenWidth = overlay.size.width;
+                showMenu<String>(
+                  color: appcolors.blackColor,
+                  shape: RoundedRectangleBorder(
+                    side: const BorderSide(color: Color(0xFF292929)),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  context: context,
+                  position: RelativeRect.fromLTRB(
+                    screenWidth -
+                        150, // Adjust this for the exact horizontal alignment
+                    80, // Top position
+                    10, // Right-side margin
+                    0, // Bottom position
+                  ),
+                  items: menuOptions
+                      .map((option) => PopupMenuItem<String>(
+                            value: option['name'],
+                            child: Center(
+                              child: Row(
+                                children: [
+                                  SvgPicture.asset(
+                                    option['image'],
+                                    color: appcolors.whiteColor,
+                                  ),
+                                  const SizedBox(
+                                    width: 15,
+                                  ),
+                                  Text(
+                                    option['name'],
+                                    style:
+                                        TextStyle(color: appcolors.whiteColor),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ))
+                      .toList(), // Convert to a list
+                  elevation: 8.0,
+                );
+              },
               child: SvgPicture.asset("assets/svg/more_vert.svg"))
         ],
       ),
@@ -229,12 +290,8 @@ class _HomeDetailScreenState extends State<HomeDetailScreen> {
                             ],
                           ),
                         )
-                     
                       ],
                     ),
-                  
-                  
-                  
                     const SizedBox(
                       height: 20,
                     ),
@@ -559,7 +616,6 @@ class _HomeDetailScreenState extends State<HomeDetailScreen> {
                               );
                             },
                           );
-                      
                         },
                         child: Container(
                           margin: const EdgeInsets.symmetric(vertical: 7),
